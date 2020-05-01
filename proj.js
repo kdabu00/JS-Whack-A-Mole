@@ -34,8 +34,8 @@ var time = 30;
       if (time == 0) {
         time = 0
         clearTimeout(timerId);
-        console.log('timer done')
         elem.innerHTML = 'Time: ' + time;
+        reset();
       } else {
         elem.innerHTML = 'Time: ' + time;
         time--;
