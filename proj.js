@@ -1,3 +1,4 @@
+
 "use strict"
 
 let count = 0;
@@ -5,59 +6,125 @@ let score = 0;
 let highscore = 0;
 let timer;
 let timeout;
+let gameTimer;
+let time = 30;
+let bgMusic = document.getElementById("bgmusic");
         
 function letsRandomize(min,max){
      return (Math.floor(Math.random() * max) + min);
 }
 
+function lowerVolume(){
+    bgMusic.volume = 0.1;
+}
+
+function bgPlay(){
+    bgMusic.play()
+}
+
+function bgStop(){
+    bgMusic.pause();
+    bgMusic.currentTime = 0;
+}
+
 function zombiePlacer(){
-    showZombie(1);
-    zombieMove(1,200);
-    if(score >= 4){
-        showZombie(2);
-        zombieMove(2,200);
+    showZombie('1');
+    zombieMove1(200);
+    if(score >= 6){
+        showZombie('2');
+        zombieMove2(400);
     }
-    if(score >= 8){
-        showZombie(3);
-        zombieMove(3,240);
-        showZombie(4);
-        zombieMove(4,120);
+    if(score >= 12){
+        showZombie('3');
+        zombieMove3(700);
+        showZombie('4');
+        zombieMove4(1000);
     }
 }
 
-var time = 30;
-    var elem = document.getElementById('funky');
-
-    var timerId = setInterval(countdown, 1000);
-
-    function countdown() {
-      if (time == 0) {
-        time = 0
-        clearTimeout(timerId);
-        elem.innerHTML = 'Time: ' + time;
+function countdown() {
+    let elem = document.getElementById('timer');
+    if (time == 1) {
         reset();
-      } else {
+        console.log('timer done');
         elem.innerHTML = 'Time: ' + time;
+        
+    } else {
         time--;
-      }
-    }
-
-function zombieMove(id,s){
-    let w = letsRandomize(0, (window.innerWidth - s));
-    let h = letsRandomize(0, (window.innerHeight - s));
-    document.getElementById('mole' + id).style.top = h + 'px';
-    document.getElementById('mole' + id).style.left = w + 'px';
-    document.getElementById('boom' + id).style.top = h + 'px';
-    document.getElementById('boom' + id).style.left = w + 'px';
+        elem.innerHTML = 'Time: ' + time;
+  }
 }
 
-function moveClicked(id, s){
+function zombieMove1(s){
     let w = letsRandomize(0, (window.innerWidth - s));
     let h = letsRandomize(0, (window.innerHeight - s));
-    document.getElementById('mole' + id).style.top = h + 'px';
-    document.getElementById('mole' + id).style.left = w + 'px';
-    document.getElementById('boom' + id).style.display = "inline-block";
-    timeout = setTimeout(showZ(id), 500);
+    document.getElementById('mole1').style.top = h + 'px';
+    document.getElementById('mole1').style.left = w + 'px';
+    document.getElementById('boom1').style.top = h + 'px';
+    document.getElementById('boom1').style.left = w + 'px';
+}
+
+function zombieMove2(s){
+    let w = letsRandomize(0, (window.innerWidth - s));
+    let h = letsRandomize(0, (window.innerHeight - s));
+    document.getElementById('mole2').style.top = h + 'px';
+    document.getElementById('mole2').style.left = w + 'px';
+    document.getElementById('boom2').style.top = h + 'px';
+    document.getElementById('boom2').style.left = w + 'px';
+}
+
+function zombieMove3(s){
+    let w = letsRandomize(0, (window.innerWidth - s));
+    let h = letsRandomize(0, (window.innerHeight - s));
+    document.getElementById('mole3').style.top = h + 'px';
+    document.getElementById('mole3').style.left = w + 'px';
+    document.getElementById('boom3').style.top = h + 'px';
+    document.getElementById('boom3').style.left = w + 'px';
+}
+
+function zombieMove4(s){
+    let w = letsRandomize(0, (window.innerWidth - s));
+    let h = letsRandomize(0, (window.innerHeight - s));
+    document.getElementById('mole4').style.top = h + 'px';
+    document.getElementById('mole4').style.left = w + 'px';
+    document.getElementById('boom4').style.top = h + 'px';
+    document.getElementById('boom4').style.left = w + 'px';
+}
+
+function moveClicked1(s){
+    let w = letsRandomize(0, (window.innerWidth - s));
+    let h = letsRandomize(0, (window.innerHeight - s));
+    document.getElementById('mole1').style.top = h + 'px';
+    document.getElementById('mole1').style.left = w + 'px';
+    document.getElementById('boom1').style.display = "inline-block";
+    timeout = setTimeout(showZ(1), 500);
+}
+
+function moveClicked2(s){
+    let w = letsRandomize(0, (window.innerWidth - s));
+    let h = letsRandomize(0, (window.innerHeight - s));
+    document.getElementById('mole2').style.top = h + 'px';
+    document.getElementById('mole2').style.left = w + 'px';
+    document.getElementById('boom2').style.display = "inline-block";
+    timeout = setTimeout(showZ(2), 400);
+}
+
+function moveClicked3(s){
+    let w = letsRandomize(0, (window.innerWidth - s));
+    let h = letsRandomize(0, (window.innerHeight - s));
+    document.getElementById('mole3').style.top = h + 'px';
+    document.getElementById('mole3').style.left = w + 'px';
+    document.getElementById('boom3').style.display = "inline-block";
+    timeout = setTimeout(showZ(3), 300);
+}
+
+function moveClicked4(s){
+    let w = letsRandomize(0, (window.innerWidth - s));
+    let h = letsRandomize(0, (window.innerHeight - s));
+    document.getElementById('mole4').style.top = h + 'px';
+    document.getElementById('mole4').style.left = w + 'px';
+    document.getElementById('boom4').style.display = "inline-block";
+    timeout = setTimeout(showZ(4), 200);
 }
 
 function showZ(id){
@@ -82,28 +149,28 @@ function initialize(){
     let sh = window.innerHeight/2;
     count = 0;
     score = 0;
-    zombieMove(1,200);
+    time = 30;
+    zombieMove1(200);
     document.getElementById('start').style.top = sh - 40 + 'px';
-    document.getElementById('start').style.left = sw - 40 + 'px';
-    document.getElementById('reset').style.top = window.innerHeight - 40 + 'px';
-    document.getElementById('reset').style.left = sw - 40 + 'px';
+    document.getElementById('start').style.left = sw - 60 + 'px';
     document.getElementById('score').innerHTML = "Score: " + score;
     document.getElementById('hscore').innerHTML = "High Score: " + highscore;
+    document.getElementById('timer').innerHTML = "Time: " + time;
     document.getElementById('head').innerHTML = "Whack-A-Mole";
     document.getElementById('start').style.display = "inline-block";
     document.getElementById('mole1').onclick = handler(1, 200);
     document.getElementById('mole2').onclick = handler(2, 200);
     document.getElementById('mole3').onclick = handler(3, 240);
     document.getElementById('mole4').onclick = handler(4, 120);
-    document.getElementById('reset').style.display = "none";
     document.getElementById('start').onclick = gameStart;
-    document.getElementById('reset').onclick = reset;
     hideAll();
 }
 function reset(){
     initialize();
     stopTimer();
     clearTimeout(timeout);
+    clearInterval(gameTimer);
+    bgStop();
 }
         
 function hideAll(){
@@ -115,16 +182,16 @@ function hideAll(){
     document.getElementById('boom2').style.display = "none";
     document.getElementById('boom3').style.display = "none";
     document.getElementById('boom4').style.display = "none";
-    document.getElementById('reset').style.display = "none";
 }
         
 function gameStart(){
     document.getElementById('start').style.display = "none";
-    document.getElementById('reset').style.display = "inline-block";
     document.getElementById('head').innerHTML = "";
-    zombieMove(1,200);
+    zombieMove1(200);
     startTimer();
+    gameTimer = setInterval(countdown, 1000);
     showZombie(1);
+    bgPlay();
 }
 
 function startTimer(){
@@ -140,7 +207,14 @@ function handler(id, s){
         document.getElementById('effect' + id).play();
         score += 1;
         animate(id);
-        moveClicked(id, s);
+        if (score % 2 == 0) {
+            time += 1;
+        }
+        document.getElementById('timer').innerHTML = 'Time: ' + time;
+        moveClicked1(s);
+        moveClicked2(s);
+        moveClicked3(s);
+        moveClicked4(s);
         document.getElementById('score').innerHTML = "Score: " + score;
         if (score > highscore){
             highscore = score;
@@ -150,3 +224,9 @@ function handler(id, s){
 }
 
 document.body.onload = initialize;
+
+module.exports = { count, score, highscore, time, timer, 
+    timeout, gameTimer, bgMusic, letsRandomize}
+
+
+
