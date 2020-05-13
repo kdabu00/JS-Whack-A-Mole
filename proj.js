@@ -1,232 +1,134 @@
-
-"use strict"
-
-let count = 0;
-let score = 0;
-let highscore = 0;
-let timer;
-let timeout;
-let gameTimer;
-let time = 30;
-let bgMusic = document.getElementById("bgmusic");
-        
-function letsRandomize(min,max){
-     return (Math.floor(Math.random() * max) + min);
+@media screen and (min-width: 801px){
+input{
+    font-size: 20px;
+    position:absolute;
 }
 
-function lowerVolume(){
-    bgMusic.volume = 0.1;
+#head{
+    font-family:Arial;
+    font-weight:bold;
+    font-size: 80px;
+    color:#b37700;
+    text-shadow:4px 4px black;
+    position: absolute;
+}
+p{
+    font-size: 30px;
+    font-family:Arial;
+    color:white;
+    text-shadow:2px 2px black;
+    font-size:36px;
+    font-weight: bold;
 }
 
-function bgPlay(){
-    bgMusic.play()
+input{
+    padding:12px 28px;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+    color:white;
+    background-color:#331a00;
+    font-family: Impact;
 }
 
-function bgStop(){
-    bgMusic.pause();
-    bgMusic.currentTime = 0;
+input:hover{
+    background-color: white;
+    color:black;
 }
 
-function zombiePlacer(){
-    showZombie('1');
-    zombieMove1(200);
-    if(score >= 6){
-        showZombie('2');
-        zombieMove2(400);
-    }
-    if(score >= 12){
-        showZombie('3');
-        zombieMove3(700);
-        showZombie('4');
-        zombieMove4(1000);
-    }
+body{
+    background-image:url(../images/background.jpeg);
+    background-size: 100%;
+    background-repeat:no-repeat;
+    background-color:#3399ff;
 }
 
-function countdown() {
-    let elem = document.getElementById('timer');
-    if (time == 1) {
-        reset();
-        console.log('timer done');
-        elem.innerHTML = 'Time: ' + time;
-        
-    } else {
-        time--;
-        elem.innerHTML = 'Time: ' + time;
-  }
+#mole1, #mole2, #boom1, #boom2{
+    width: 200px;
+    height: 200px;
+    position:absolute;
+    display:none;
 }
 
-function zombieMove1(s){
-    let w = letsRandomize(0, (window.innerWidth - s));
-    let h = letsRandomize(0, (window.innerHeight - s));
-    document.getElementById('mole1').style.top = h + 'px';
-    document.getElementById('mole1').style.left = w + 'px';
-    document.getElementById('boom1').style.top = h + 'px';
-    document.getElementById('boom1').style.left = w + 'px';
+#mole3, #boom3{
+    width: 240px;
+    height: 240px;
+    position:absolute;
+    display:none;
+}
+#mole4, #boom4{
+    width: 120px;
+    height: 120px;
+    position:absolute;
+    display:none;
 }
 
-function zombieMove2(s){
-    let w = letsRandomize(0, (window.innerWidth - s));
-    let h = letsRandomize(0, (window.innerHeight - s));
-    document.getElementById('mole2').style.top = h + 'px';
-    document.getElementById('mole2').style.left = w + 'px';
-    document.getElementById('boom2').style.top = h + 'px';
-    document.getElementById('boom2').style.left = w + 'px';
+}
+@media screen and (max-width: 800px){
+
+    
+input{
+    font-size: 10px;
+    position:center;
 }
 
-function zombieMove3(s){
-    let w = letsRandomize(0, (window.innerWidth - s));
-    let h = letsRandomize(0, (window.innerHeight - s));
-    document.getElementById('mole3').style.top = h + 'px';
-    document.getElementById('mole3').style.left = w + 'px';
-    document.getElementById('boom3').style.top = h + 'px';
-    document.getElementById('boom3').style.left = w + 'px';
+#head{
+    font-family:Arial;
+    font-weight:bold;
+    font-size: 30px;
+    color:#b37700;
+    text-shadow:4px 4px black;
+    text-align: center;
 }
 
-function zombieMove4(s){
-    let w = letsRandomize(0, (window.innerWidth - s));
-    let h = letsRandomize(0, (window.innerHeight - s));
-    document.getElementById('mole4').style.top = h + 'px';
-    document.getElementById('mole4').style.left = w + 'px';
-    document.getElementById('boom4').style.top = h + 'px';
-    document.getElementById('boom4').style.left = w + 'px';
+#hscore, #score, #timer, #lives{
+    color: white;
+    font-family: Arial;
+    font-size: 25px;
+    font-weight: bold;
+    text-shadow:2px 2px black;
 }
 
-function moveClicked1(s){
-    let w = letsRandomize(0, (window.innerWidth - s));
-    let h = letsRandomize(0, (window.innerHeight - s));
-    document.getElementById('mole1').style.top = h + 'px';
-    document.getElementById('mole1').style.left = w + 'px';
-    document.getElementById('boom1').style.display = "inline-block";
-    timeout = setTimeout(showZ(1), 500);
+input{
+    padding:12px 28px;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+    color:white;
+    background-color:#331a00;
+    font-family: Impact;
+    text-align: center;
 }
 
-function moveClicked2(s){
-    let w = letsRandomize(0, (window.innerWidth - s));
-    let h = letsRandomize(0, (window.innerHeight - s));
-    document.getElementById('mole2').style.top = h + 'px';
-    document.getElementById('mole2').style.left = w + 'px';
-    document.getElementById('boom2').style.display = "inline-block";
-    timeout = setTimeout(showZ(2), 400);
+#survival:hover{
+    background-color: white;
+    color:black;
 }
 
-function moveClicked3(s){
-    let w = letsRandomize(0, (window.innerWidth - s));
-    let h = letsRandomize(0, (window.innerHeight - s));
-    document.getElementById('mole3').style.top = h + 'px';
-    document.getElementById('mole3').style.left = w + 'px';
-    document.getElementById('boom3').style.display = "inline-block";
-    timeout = setTimeout(showZ(3), 300);
+body{
+    background-image:url(../images/background.jpeg);
+    background-size: 250%;
+    background-repeat:repeat-y;
+    background-color:#3399ff;
 }
 
-function moveClicked4(s){
-    let w = letsRandomize(0, (window.innerWidth - s));
-    let h = letsRandomize(0, (window.innerHeight - s));
-    document.getElementById('mole4').style.top = h + 'px';
-    document.getElementById('mole4').style.left = w + 'px';
-    document.getElementById('boom4').style.display = "inline-block";
-    timeout = setTimeout(showZ(4), 200);
+#mole1, #mole2, #boom1, #boom2{
+    width: 90px;
+    height: 90px;
+    position:absolute;
+    display:none;
 }
 
-function showZ(id){
-    return function(){
-        document.getElementById('mole' + id).style.display = "inline-block";
-        document.getElementById('boom' + id).style.display = "none";
-    }
+#mole3, #boom3{
+    width: 110px;
+    height: 110px;
+    position:absolute;
+    display:none;
+}
+#mole4, #boom4{
+    width: 70px;
+    height: 70px;
+    position:absolute;
+    display:none;
 }
 
-function showZombie(id){
-    document.getElementById('mole' + id).style.display = "inline-block";
-    document.getElementById('boom' + id).style.display = "none";
-}
-        
-function animate(id){
-    document.getElementById('mole' + id).style.display = "none";
-    document.getElementById('boom' + id).style.display = "inline-block";
-}
-        
-function initialize(){
-    let sw = window.innerWidth/2;
-    let sh = window.innerHeight/2;
-    count = 0;
-    score = 0;
-    time = 30;
-    zombieMove1(200);
-    document.getElementById('start').style.top = sh - 40 + 'px';
-    document.getElementById('start').style.left = sw - 60 + 'px';
-    document.getElementById('score').innerHTML = "Score: " + score;
-    document.getElementById('hscore').innerHTML = "High Score: " + highscore;
-    document.getElementById('timer').innerHTML = "Time: " + time;
-    document.getElementById('head').innerHTML = "Whack-A-Mole";
-    document.getElementById('start').style.display = "inline-block";
-    document.getElementById('mole1').onclick = handler(1, 200);
-    document.getElementById('mole2').onclick = handler(2, 200);
-    document.getElementById('mole3').onclick = handler(3, 240);
-    document.getElementById('mole4').onclick = handler(4, 120);
-    document.getElementById('start').onclick = gameStart;
-    hideAll();
-}
-function reset(){
-    initialize();
-    stopTimer();
-    clearTimeout(timeout);
-    clearInterval(gameTimer);
-    bgStop();
-}
-        
-function hideAll(){
-    document.getElementById('mole1').style.display = "none";
-    document.getElementById('mole2').style.display = "none";
-    document.getElementById('mole3').style.display = "none";
-    document.getElementById('mole4').style.display = "none";
-    document.getElementById('boom1').style.display = "none";
-    document.getElementById('boom2').style.display = "none";
-    document.getElementById('boom3').style.display = "none";
-    document.getElementById('boom4').style.display = "none";
-}
-        
-function gameStart(){
-    document.getElementById('start').style.display = "none";
-    document.getElementById('head').innerHTML = "";
-    zombieMove1(200);
-    startTimer();
-    gameTimer = setInterval(countdown, 1000);
-    showZombie(1);
-    bgPlay();
-}
 
-function startTimer(){
-    timer = setInterval(zombiePlacer, 2000);
 }
-
-function stopTimer(){
-    clearInterval(timer);
-}
-        
-function handler(id, s){
-    return function (){
-        document.getElementById('effect' + id).play();
-        score += 1;
-        animate(id);
-        if (score % 2 == 0) {
-            time += 1;
-        }
-        document.getElementById('timer').innerHTML = 'Time: ' + time;
-        moveClicked1(s);
-        moveClicked2(s);
-        moveClicked3(s);
-        moveClicked4(s);
-        document.getElementById('score').innerHTML = "Score: " + score;
-        if (score > highscore){
-            highscore = score;
-            document.getElementById('hscore').innerHTML = "NEW High Score: " + highscore;
-        }
-    }
-}
-
-document.body.onload = initialize;
-
-module.exports = { count, score, highscore, time, timer, 
-    timeout, gameTimer, bgMusic, letsRandomize}
-
-
-
