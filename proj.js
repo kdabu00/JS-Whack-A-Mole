@@ -359,6 +359,7 @@ function initialize(){
     document.getElementById('start').style.display = "inline-block";
     document.getElementById('survival').style.display = "inline-block";
     document.getElementById('insane').style.display = "inline-block";
+    document.querySelector(".theme").style.display = "inline-block";
     document.getElementById('mole1').onclick = handler(1, 200);
     document.getElementById('mole2').onclick = handler(2, 200);
     document.getElementById('mole3').onclick = handler(3, 240);
@@ -407,6 +408,7 @@ function gameStart(){
     document.getElementById('timer').innerHTML = "Time: " + time;
     document.getElementById('start').style.display = "none";
     document.getElementById('head').innerHTML = "";
+    document.querySelector(".theme").style.display = "none"
     moleMove(1,200);
     startTimer();
     gameTimer = setInterval(countdown, 1000);
@@ -513,5 +515,29 @@ function handler(id, s){
         }
     }
 }
+
+function defaultTheme(){
+    document.getElementById("mole1").src = "images/mole1.gif";
+    document.getElementById("mole2").src = "images/mole2.gif";
+    document.getElementById("mole3").src = "images/mole3.gif";
+    document.getElementById("mole4").src = "images/mole4.gif";
+    document.body.style.backgroundImage = "url('images/background.jpeg')";
+}
+
+function zombieTheme() {
+    document.getElementById("mole1").src = "images/zombie1.gif";
+    document.getElementById("mole2").src = "images/zombie2.gif";
+    document.getElementById("mole3").src = "images/zombie3.gif";
+    document.getElementById("mole4").src = "images/zombie4.gif";
+    document.body.style.backgroundImage = "url('images/moon.jpg')";
+  }
+
+  function bcitTheme() {
+    document.getElementById("mole1").src = "images/bcit1.png";
+    document.getElementById("mole2").src = "images/bcit2.png";
+    document.getElementById("mole3").src = "images/bcit3.png";
+    document.getElementById("mole4").src = "images/bcit4.png";
+    document.body.style.backgroundImage = "url('images/bcit5.webp')";
+  }
 
 document.body.onload = initialize;
