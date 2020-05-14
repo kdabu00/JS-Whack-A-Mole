@@ -522,6 +522,10 @@ function defaultTheme(){
     document.getElementById("mole3").src = "images/mole3.gif";
     document.getElementById("mole4").src = "images/mole4.gif";
     document.body.style.backgroundImage = "url('images/background.jpeg')";
+    document.getElementById("effect1").src = "audio/effect.mp3";
+    document.getElementById("effect2").src = "audio/effect.mp3";
+    document.getElementById("effect3").src = "audio/effect.mp3";
+    document.getElementById("effect4").src = "audio/effect.mp3";
 }
 
 function zombieTheme() {
@@ -530,6 +534,10 @@ function zombieTheme() {
     document.getElementById("mole3").src = "images/zombie3.gif";
     document.getElementById("mole4").src = "images/zombie4.gif";
     document.body.style.backgroundImage = "url('images/moon.jpg')";
+    document.getElementById("effect1").src = "audio/zombie.mp3";
+    document.getElementById("effect2").src = "audio/zombie.mp3";
+    document.getElementById("effect3").src = "audio/zombie.mp3";
+    document.getElementById("effect4").src = "audio/zombie.mp3";
   }
 
   function bcitTheme() {
@@ -537,7 +545,11 @@ function zombieTheme() {
     document.getElementById("mole2").src = "images/bcit2.png";
     document.getElementById("mole3").src = "images/bcit3.png";
     document.getElementById("mole4").src = "images/bcit4.png";
-    document.body.style.backgroundImage = "url('images/bcit5.webp')";
+    document.body.style.backgroundImage = "url('images/bcitbackground.jpg')";
+    document.getElementById("effect1").src = "audio/whack.mp3";
+    document.getElementById("effect2").src = "audio/whack.mp3";
+    document.getElementById("effect3").src = "audio/whack.mp3";
+    document.getElementById("effect4").src = "audio/whack.mp3";
   }
 
 document.body.onload = initialize;
