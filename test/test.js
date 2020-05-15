@@ -104,7 +104,7 @@ describe('Test', function(){
     });
   });
 
-//   describe('# Check Functions', function() {
+  describe('# Check Functions', function() {
 //     it('letsRandomize() should be a number', function() {
 //       var myCode = require('../proj.js');
 //       let result = myCode.letsRandomize();
