@@ -188,12 +188,20 @@ describe('Test', function(){
 //       expect(boom1display).to.be.a('string');
 //     });
 
-    it('gameStart()');
+    it('gameStart()', function() {
+    
+    });
 
-    it('survivalMode()');
+    it('survivalMode()', function() {
+    
+    });
 
-    it('insaneMode()');
+    it('insaneMode()', function() {
+    
+    });
 
-    it('handler()');
+    it('handler()', function() {
+    
+    });
   });
 })
