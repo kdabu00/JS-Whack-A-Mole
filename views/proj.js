@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 let count = 0;
 let score = 0;
@@ -12,6 +12,8 @@ let timer2;
 let timer3;
 let timer4;
 
+let difficulty = 0;
+
 let timeout1;
 let timeout2;
 let timeout3;
@@ -23,12 +25,13 @@ let four = false;
 
 let gameTimer;
 let time = 0;
+let bgMusic = document.getElementById("bgmusic");
 
 let survival = false;
 let insane = false;
 let lives = 10;
  
-let bgMusic = document.getElementById("bgmusic");
+
 // scoreboard.sort(function(a, b){return b - a});
 
 // Randomizer
@@ -66,6 +69,13 @@ function molePlacer1(){
             reset();
         }
         document.getElementById('lives').innerHTML = "Lives: " + lives;
+    } else {
+        if (score - 1 >= 0) {
+            score--;
+        } else {
+            score = 0;
+        }
+        document.getElementById('score').innerHTML = "Score: " + score;
     }
 }
 
@@ -81,6 +91,13 @@ function molePlacer2(){
             reset();
         }
         document.getElementById('lives').innerHTML = "Lives: " + lives;
+    } else {
+        if (score - 1 >= 0) {
+            score--;
+        } else {
+            score = 0;
+        }
+        document.getElementById('score').innerHTML = "Score: " + score;
     }
 }
 
@@ -95,6 +112,13 @@ function molePlacer3(){
             reset();
         }
         document.getElementById('lives').innerHTML = "Lives: " + lives;
+    } else {
+        if (score - 1 >= 0) {
+            score--;
+        } else {
+            score = 0;
+        }
+        document.getElementById('score').innerHTML = "Score: " + score;
     }
 }
 
@@ -109,6 +133,13 @@ function molePlacer4(){
             reset();
         }
         document.getElementById('lives').innerHTML = "Lives: " + lives;
+    } else {
+        if (score - 1 >= 0) {
+            score--;
+        } else {
+            score = 0;
+        }
+        document.getElementById('score').innerHTML = "Score: " + score;
     }
 }
 
@@ -121,29 +152,61 @@ function countdown() {
             reset();
             console.log('timer done');
             elem.innerHTML = 'Time: ' + time;
-            
+            // Default Timed game mode speed increase
         } else {
             time--;
+            difficulty++;
             elem.innerHTML = 'Time: ' + time;
+            if (!(insane)) {
+                if (difficulty % 10 == 0) {
+                    if (speed - 50 >= 200){
+                        speed -= 50;
+                        console.log(speed);
+                    } else {
+                        speed = 200;
+                    }
+                }
+                // insane game mode speed increase
+            } else {
+                if (difficulty % 10 == 0) {
+                    if (speed - 100 >= 200){
+                        speed -= 100;
+                        console.log(speed);
+                    } else {
+                        speed = 200;
+                    }
+                }
+            }
         }
+        // Survival game mode speed increase
     } else {
         time++;
+        difficulty++;
         elem.innerHTML = 'Time: ' + time;
+        if (difficulty % 10 == 0) {
+            if (speed - 50 >= 200){
+                speed -= 50;
+                console.log(speed);
+            } else {
+                speed = 200;
+            }
+        }
     }
-
-    
     if((score >= 5 && !(two)) || (insane && !(two))) {
         two = true;
+        moleMove(2,200);
         showMole(2);
         timer2 = setTimeout(molePlacer2, speed);
     }
     if((score == 10 && !(three)) || (insane && !(three))) {
         three = true;
+        moleMove(3,240);
         showMole(3);
         timer3 = setTimeout(molePlacer3, speed);
     }
     if((score == 20 && !(four)) || (insane && !(four))){
         four = true;
+        moleMove(4,120);
         showMole(4);
         timer4 = setTimeout(molePlacer4, speed);
     }
@@ -210,7 +273,6 @@ function showM1(h, w){
         document.getElementById('boom1').style.left = w + 'px';
         document.getElementById('mole1').style.display = "inline-block";
         document.getElementById('boom1').style.display = "none";
-        console.log('showM');
         timer1 = setTimeout(molePlacer1, speed);
     }
 }
@@ -236,7 +298,6 @@ function showM3(h, w){
         document.getElementById('boom3').style.left = w + 'px';
         document.getElementById('mole3').style.display = "inline-block";
         document.getElementById('boom3').style.display = "none";
-        console.log('showM');
         timer3 = setTimeout(molePlacer3, speed);
     }
 }
@@ -249,7 +310,6 @@ function showM4(h, w){
         document.getElementById('boom4').style.left = w + 'px';
         document.getElementById('mole4').style.display = "inline-block";
         document.getElementById('boom4').style.display = "none";
-        console.log('showM');
         timer4 = setTimeout(molePlacer4, speed);
     }
 }
@@ -266,8 +326,6 @@ function animate(id){
 }
         
 function initialize(){
-    let sw = window.innerWidth/2;
-    let sh = window.innerHeight/2;
     count = 0;
     score = 0;
     lives = 10;
@@ -279,18 +337,11 @@ function initialize(){
     moleMove(1,200);
     survival = false;
     insane = false;
+    difficulty = 0;
     document.getElementById('survival').style.backgroundColor = "#331a00";
     document.getElementById('survival').style.color = "white";
     document.getElementById('insane').style.backgroundColor = "#331a00";
     document.getElementById('insane').style.color = "white";
-    document.getElementById('start').style.top = sh - 40 + 'px';
-    document.getElementById('start').style.left = sw - 60 + 'px';
-    document.getElementById('head').style.top = sh - 400 + 'px';
-    document.getElementById('head').style.left = sw - 270 + 'px';
-    document.getElementById('survival').style.top = sh + 80 + 'px';
-    document.getElementById('survival').style.left = sw - 73 + 'px';
-    document.getElementById('insane').style.top = sh + 20 + 'px';
-    document.getElementById('insane').style.left = sw - 65 + 'px';
     document.getElementById('score').innerHTML = "Score: " + score;
     document.getElementById('hscore').innerHTML = "High Score: " + highscore;
     document.getElementById('timer').innerHTML = "Time: " + time;
@@ -298,6 +349,7 @@ function initialize(){
     document.getElementById('start').style.display = "inline-block";
     document.getElementById('survival').style.display = "inline-block";
     document.getElementById('insane').style.display = "inline-block";
+    document.querySelector(".theme").style.display = "inline-block";
     document.getElementById('mole1').onclick = handler(1, 200);
     document.getElementById('mole2').onclick = handler(2, 200);
     document.getElementById('mole3').onclick = handler(3, 240);
@@ -346,6 +398,7 @@ function gameStart(){
     document.getElementById('timer').innerHTML = "Time: " + time;
     document.getElementById('start').style.display = "none";
     document.getElementById('head').innerHTML = "";
+    document.querySelector(".theme").style.display = "none"
     moleMove(1,200);
     startTimer();
     gameTimer = setInterval(countdown, 1000);
@@ -356,7 +409,7 @@ function gameStart(){
 function survivalMode() {
     if (survival == false) {
         survival = true;
-        console.log('on');
+        console.log('Survival on');
         document.getElementById('lives').style.display = "block";
         document.getElementById('survival').style.backgroundColor = "white";
         document.getElementById('survival').style.color = "black";
@@ -364,12 +417,13 @@ function survivalMode() {
         if (insane == true) {
             insane = false;
             speed += 500;
+            console.log('Insane off')
             document.getElementById('insane').style.backgroundColor = "#331a00";
             document.getElementById('insane').style.color = "white";
         }
     } else {
         survival = false;
-        console.log('off');
+        console.log('Survival off');
         document.getElementById('survival').style.backgroundColor = "#331a00";
         document.getElementById('survival').style.color = "white";
         document.getElementById('lives').style.display = "none";
@@ -381,11 +435,12 @@ function insaneMode() {
     if (insane == false) {
         insane = true;
         speed -= 500;
+        console.log('Insane On')
         document.getElementById('insane').style.backgroundColor = "white";
         document.getElementById('insane').style.color = "black";
         if (survival == true) {
             survival = false;
-            console.log('off');
+            console.log('Survival off');
             document.getElementById('survival').style.backgroundColor = "#331a00";
             document.getElementById('survival').style.color = "white";
             document.getElementById('lives').style.display = "none";
@@ -393,6 +448,7 @@ function insaneMode() {
     } else {
         insane = false;
         speed += 500;
+        console.log('Insane off')
         document.getElementById('insane').style.backgroundColor = "#331a00";
         document.getElementById('insane').style.color = "white";
     }
@@ -414,18 +470,12 @@ function stopTimer(){
 function handler(id, s){
     return function (){
         document.getElementById('effect' + id).play();
-        score += 1;
-        animate(id);
-        if (insane || survival) {
-            if (score % 10 == 0) {
-                if ((speed - 100) > 200) {
-                    speed -= 100;
-                    console.log(speed)
-                } else {
-                    speed = 200;
-                }
-            }
+        if (insane == true){
+            score += 3;
+        } else {
+            score += 1;
         }
+        animate(id);
         if (survival == false){
             if (score % 2 == 0) {
                 time += 1;
@@ -456,11 +506,43 @@ function handler(id, s){
     }
 }
 
+function defaultTheme(){
+    document.getElementById("mole1").src = "images/mole1.gif";
+    document.getElementById("mole2").src = "images/mole2.gif";
+    document.getElementById("mole3").src = "images/mole3.gif";
+    document.getElementById("mole4").src = "images/mole4.gif";
+    document.body.style.backgroundImage = "url('images/background.jpeg')";
+    document.getElementById("effect1").src = "audio/effect.mp3";
+    document.getElementById("effect2").src = "audio/effect.mp3";
+    document.getElementById("effect3").src = "audio/effect.mp3";
+    document.getElementById("effect4").src = "audio/effect.mp3";
+    document.body.style.backgroundColor = '#392613';
+}
+
+function zombieTheme() {
+    document.getElementById("mole1").src = "images/zombie1.gif";
+    document.getElementById("mole2").src = "images/zombie2.gif";
+    document.getElementById("mole3").src = "images/zombie3.gif";
+    document.getElementById("mole4").src = "images/zombie4.gif";
+    document.body.style.backgroundImage = "url('images/moon.jpg')";
+    document.getElementById("effect1").src = "audio/zombie.mp3";
+    document.getElementById("effect2").src = "audio/zombie.mp3";
+    document.getElementById("effect3").src = "audio/zombie.mp3";
+    document.getElementById("effect4").src = "audio/zombie.mp3";
+    document.body.style.backgroundColor = '#000000';
+  }
+
+  function bcitTheme() {
+    document.getElementById("mole1").src = "images/bcit1.png";
+    document.getElementById("mole2").src = "images/bcit2.png";
+    document.getElementById("mole3").src = "images/bcit3.png";
+    document.getElementById("mole4").src = "images/bcit4.png";
+    document.body.style.backgroundImage = "url('images/bcitbackground.jpg')";
+    document.getElementById("effect1").src = "audio/whack.mp3";
+    document.getElementById("effect2").src = "audio/whack.mp3";
+    document.getElementById("effect3").src = "audio/whack.mp3";
+    document.getElementById("effect4").src = "audio/whack.mp3";
+    document.body.style.backgroundColor = 'white';
+  }
+
 document.body.onload = initialize;
-
-module.exports = { count, score, highscore, speed, scoreboard, survival, insane, lives,
-    time, gameTimer, timer1, timer2, timer3, timer4, timeout1, timeout2, timeout3, timeout4, 
-    two, three, four,
-    letsRandomize };
-
-
