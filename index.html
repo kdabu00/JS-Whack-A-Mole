@@ -3,7 +3,7 @@
     <head>
         <meta charset = "UTF-8">
         <title>WebProject</title>
-        <link rel ="stylesheet" href = "css/webproj.css">
+        <link rel="stylesheet" type="text/css" href="css/webproj.css">
     </head>
     
     <body>
@@ -19,9 +19,17 @@
         <p id = 'score'></p>
         <p id = 'timer'></p>
         <p id = 'lives'></p>
+        <h1 id = "head">Whack-A-Mole</h1>
         <input type = "button" id = "start" value = "START"></input>
         <input type = "button" id = "survival" value = "SURVIVAL"></input>
         <input type = "button" id = "insane" value = "INSANE"></input>
+
+        <div class = "theme">
+            <button onclick = "defaultTheme()">Default</button>
+            <button onclick = "zombieTheme()">Zombie</button>
+            <button onclick = "bcitTheme()">BCIT</button>       
+        </div>
+        
         <audio id='bgmusic'>
             <source src='audio/background.mp3' type="audio/mp3">
         </audio>
@@ -37,7 +45,6 @@
         <audio id='effect4'>
             <source src='audio/effect.mp3'>
         </audio>
-        <h1 id = "head">Whack-A-Mole</h1>
     </body>
     <script src = "proj.js"></script>
 </html>
