@@ -507,41 +507,41 @@ function handler(id, s){
 }
 
 function defaultTheme(){
-    document.getElementById("mole1").src = "assets/images/mole1.gif";
-    document.getElementById("mole2").src = "assets/images/mole2.gif";
-    document.getElementById("mole3").src = "assets/images/mole3.gif";
-    document.getElementById("mole4").src = "assets/images/mole4.gif";
-    document.body.style.backgroundImage = "url('assets/images/background.jpeg')";
-    document.getElementById("effect1").src = "assets/audio/effect.mp3";
-    document.getElementById("effect2").src = "assets/audio/effect.mp3";
-    document.getElementById("effect3").src = "assets/audio/effect.mp3";
-    document.getElementById("effect4").src = "assets/audio/effect.mp3";
+    document.getElementById("mole1").src = "images/mole1.gif";
+    document.getElementById("mole2").src = "images/mole2.gif";
+    document.getElementById("mole3").src = "images/mole3.gif";
+    document.getElementById("mole4").src = "images/mole4.gif";
+    document.body.style.backgroundImage = "url('images/background.jpeg')";
+    document.getElementById("effect1").src = "audio/effect.mp3";
+    document.getElementById("effect2").src = "audio/effect.mp3";
+    document.getElementById("effect3").src = "audio/effect.mp3";
+    document.getElementById("effect4").src = "audio/effect.mp3";
     document.body.style.backgroundColor = '#392613';
 }
 
 function zombieTheme() {
-    document.getElementById("mole1").src = "assets/images/zombie1.gif";
-    document.getElementById("mole2").src = "assets/images/zombie2.gif";
-    document.getElementById("mole3").src = "assets/images/zombie3.gif";
-    document.getElementById("mole4").src = "assets/images/zombie4.gif";
-    document.body.style.backgroundImage = "url('assets/images/moon.jpg')";
-    document.getElementById("effect1").src = "assets/audio/zombie.mp3";
-    document.getElementById("effect2").src = "assets/audio/zombie.mp3";
-    document.getElementById("effect3").src = "assets/audio/zombie.mp3";
-    document.getElementById("effect4").src = "assets/audio/zombie.mp3";
+    document.getElementById("mole1").src = "images/zombie1.gif";
+    document.getElementById("mole2").src = "images/zombie2.gif";
+    document.getElementById("mole3").src = "images/zombie3.gif";
+    document.getElementById("mole4").src = "images/zombie4.gif";
+    document.body.style.backgroundImage = "url('images/moon.jpg')";
+    document.getElementById("effect1").src = "audio/zombie.mp3";
+    document.getElementById("effect2").src = "audio/zombie.mp3";
+    document.getElementById("effect3").src = "audio/zombie.mp3";
+    document.getElementById("effect4").src = "audio/zombie.mp3";
     document.body.style.backgroundColor = '#000000';
   }
 
   function bcitTheme() {
-    document.getElementById("mole1").src = "assets/images/bcit1.png";
-    document.getElementById("mole2").src = "assets/images/bcit2.png";
-    document.getElementById("mole3").src = "assets/images/bcit3.png";
-    document.getElementById("mole4").src = "assets/images/bcit4.png";
-    document.body.style.backgroundImage = "url('assets/images/bcitbackground.jpg')";
-    document.getElementById("effect1").src = "assets/audio/whack.mp3";
-    document.getElementById("effect2").src = "assets/audio/whack.mp3";
-    document.getElementById("effect3").src = "assets/audio/whack.mp3";
-    document.getElementById("effect4").src = "assets/audio/whack.mp3";
+    document.getElementById("mole1").src = "images/bcit1.png";
+    document.getElementById("mole2").src = "images/bcit2.png";
+    document.getElementById("mole3").src = "images/bcit3.png";
+    document.getElementById("mole4").src = "images/bcit4.png";
+    document.body.style.backgroundImage = "url('images/bcitbackground.jpg')";
+    document.getElementById("effect1").src = "audio/whack.mp3";
+    document.getElementById("effect2").src = "audio/whack.mp3";
+    document.getElementById("effect3").src = "audio/whack.mp3";
+    document.getElementById("effect4").src = "audio/whack.mp3";
     document.body.style.backgroundColor = 'white';
   }
 
