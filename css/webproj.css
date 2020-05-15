@@ -154,7 +154,7 @@ input:hover{
     }
 
     body{
-        background-image:url(assets/images/background.jpeg);
+        background-image:url(images/background.jpeg);
         background-size: 100%;
         background-repeat:no-repeat;
     }
@@ -222,7 +222,7 @@ input:hover{
     }
 
     body{
-        background-image:url(assets/images/background.jpeg);
+        background-image:url(images/background.jpeg);
         background-size: 100%;
         background-repeat:no-repeat;
     }
