@@ -66,7 +66,7 @@ function molePlacer1(){
     if (survival == true) {
         lives--;
         if (lives <= 0) {
-            reset();
+            endscreen();
         }
         document.getElementById('lives').innerHTML = "Lives: " + lives;
     } else {
@@ -84,11 +84,10 @@ function molePlacer2(){
     clearTimeout(timer2);
     timer2 = setTimeout(molePlacer2, speed)
     console.log('movePlacer2');
-    lives--;
     if (survival == true) {
         lives--;
         if (lives <= 0) {
-            reset();
+            endscreen();
         }
         document.getElementById('lives').innerHTML = "Lives: " + lives;
     } else {
@@ -105,11 +104,10 @@ function molePlacer3(){
     moleMove(3,240);
     clearTimeout(timer3);
     timer3 = setTimeout(molePlacer3, speed)
-    lives--;
     if (survival == true) {
         lives--;
         if (lives <= 0) {
-            reset();
+            endscreen();
         }
         document.getElementById('lives').innerHTML = "Lives: " + lives;
     } else {
@@ -126,11 +124,10 @@ function molePlacer4(){
     moleMove(4,120);
     clearTimeout(timer4);
     timer4 = setTimeout(molePlacer4, speed)
-    lives--;
     if (survival == true) {
         lives--;
         if (lives <= 0) {
-            reset();
+            endscreen();
         }
         document.getElementById('lives').innerHTML = "Lives: " + lives;
     } else {
@@ -149,7 +146,7 @@ function countdown() {
     let elem = document.getElementById('timer');
     if (!(survival)) {
         if (time == 1) {
-            reset();
+            endscreen();
             console.log('timer done');
             elem.innerHTML = 'Time: ' + time;
             // Default Timed game mode speed increase
@@ -338,6 +335,20 @@ function initialize(){
     survival = false;
     insane = false;
     difficulty = 0;
+    document.getElementById("scoreboard").innerHTML = "";
+    let scores = Object.keys(scoreboard);
+    scores.sort(function(a, b) { return scoreboard[a] - scoreboard[b] });
+    if (scores.length > 0) {
+        for(let i = scores.length - 1; i >= 0; i--){
+            insertScore(scores[i], scoreboard[scores[i]]);
+        }
+        let table = document.getElementById("scoreboard");
+        let row = table.insertRow(0);
+        let cell1 = row.insertCell(0);
+        let cell2 = row.insertCell(1);
+        cell1.innerHTML = "SCORE";
+        cell2.innerHTML = "NAME";
+    }
     document.getElementById('survival').style.backgroundColor = "#331a00";
     document.getElementById('survival').style.color = "white";
     document.getElementById('insane').style.backgroundColor = "#331a00";
@@ -357,12 +368,22 @@ function initialize(){
     document.getElementById('start').onclick = gameStart;
     document.getElementById('survival').onclick = survivalMode;
     document.getElementById('insane').onclick = insaneMode;
+    document.getElementById('submit').onclick = submitScore;
+    document.getElementById('reset').onclick = reset;
     document.getElementById('lives').style.display = "none";
-    
-    hideAll();
+    document.getElementById('score').style.display = "block";
+    document.getElementById('timer').style.display = "block";
 }
 function reset(){
     initialize();
+    document.getElementById('scoreboard').style.display = "none";
+    document.getElementById('reset').style.display = "none";
+    document.getElementById('submit').style.display = "none";
+    
+}
+
+function endscreen(){
+    hideAll();
     stopTimer();
     clearTimeout(timeout1);
     clearTimeout(timeout2);
@@ -374,8 +395,53 @@ function reset(){
     clearTimeout(timer4);
     clearInterval(gameTimer);
     bgStop();
+    document.getElementById('scoreboard').style.display = "table";
+    document.getElementById('reset').style.display = "inline-block";
+    document.getElementById('submit').style.display = "inline-block";
+    document.getElementById('score').style.display = "none";
+    document.getElementById('timer').style.display = "none";
+    document.getElementById('lives').style.display = "none";
 }
-        
+
+function insertScore(name, score) {
+  let table = document.getElementById("scoreboard");
+  let row = table.insertRow(0);
+  let cell1 = row.insertCell(0);
+  let cell2 = row.insertCell(1);
+  cell1.innerHTML = name;
+  cell2.innerHTML = score;
+}
+
+function submitScore(){
+    let name = prompt("Enter your name");
+    while(trim(name) == "") {
+        name = prompt("Please try again");
+    }
+    scoreboard[name] = highscore;
+    
+    document.getElementById("scoreboard").innerHTML = "";
+    let scores = Object.keys(scoreboard);
+    scores.sort(function(a, b) { return scoreboard[a] - scoreboard[b] });
+    if (scores.length > 0) {
+        for(let i = 0; i < scores.length; i++){
+            insertScore(scores[i], scoreboard[scores[i]]);
+        }
+    }
+    let table = document.getElementById("scoreboard");
+    let row = table.insertRow(0);
+    let cell1 = row.insertCell(0);
+    let cell2 = row.insertCell(1);
+    cell1.innerHTML = "SCORE";
+    cell2.innerHTML = "NAME";
+    highscore = 0;
+    document.getElementById('hscore').innerHTML = "High Score: " + highscore;
+    document.getElementById('submit').style.display = "none";
+}
+
+function trim(s){ 
+  return ( s || '' ).replace( /^\s+|\s+$/g, '' ); 
+}
+ 
 function hideAll(){
     document.getElementById('mole1').style.display = "none";
     document.getElementById('mole2').style.display = "none";
