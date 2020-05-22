@@ -346,8 +346,8 @@ function initialize(){
         let row = table.insertRow(0);
         let cell1 = row.insertCell(0);
         let cell2 = row.insertCell(1);
-        cell1.innerHTML = "SCORE";
-        cell2.innerHTML = "NAME";
+        cell1.innerHTML = "NAME";
+        cell2.innerHTML = "SCORE";
     }
     document.getElementById('survival').style.backgroundColor = "#331a00";
     document.getElementById('survival').style.color = "white";
@@ -431,8 +431,8 @@ function submitScore(){
     let row = table.insertRow(0);
     let cell1 = row.insertCell(0);
     let cell2 = row.insertCell(1);
-    cell1.innerHTML = "SCORE";
-    cell2.innerHTML = "NAME";
+    cell1.innerHTML = "NAME";
+    cell2.innerHTML = "SCORE";
     highscore = 0;
     document.getElementById('hscore').innerHTML = "High Score: " + highscore;
     document.getElementById('submit').style.display = "none";
