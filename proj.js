@@ -582,6 +582,7 @@ function defaultTheme(){
     document.getElementById("effect2").src = "audio/effect.mp3";
     document.getElementById("effect3").src = "audio/effect.mp3";
     document.getElementById("effect4").src = "audio/effect.mp3";
+    document.getElementById("bgmusic").src = "audio/background.mp3";
     document.body.style.backgroundColor = '#392613';
 }
 
@@ -595,6 +596,7 @@ function zombieTheme() {
     document.getElementById("effect2").src = "audio/zombie.mp3";
     document.getElementById("effect3").src = "audio/zombie.mp3";
     document.getElementById("effect4").src = "audio/zombie.mp3";
+    document.getElementById("bgmusic").src = "audio/skeleton.mp3";
     document.body.style.backgroundColor = '#000000';
   }
 
@@ -608,6 +610,7 @@ function zombieTheme() {
     document.getElementById("effect2").src = "audio/whack.mp3";
     document.getElementById("effect3").src = "audio/whack.mp3";
     document.getElementById("effect4").src = "audio/whack.mp3";
+    document.getElementById("bgmusic").src = "audio/school.mp3";
     document.body.style.backgroundColor = 'white';
   }
 
